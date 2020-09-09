@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@android:color/darker_gray"> <!--水波纹颜色-->
+    <item>
+        <shape>
+
+            <!--实现应用背景颜色渐变-->
+            <gradient
+                android:angle="0"
+                android:endColor="@color/color_FF678C"
+                android:startColor="@color/color_FF7C4E" />
+            <corners android:topLeftRadius="10dp" android:bottomRightRadius="10dp"/>
+
+        </shape>
+    </item>
+
+</ripple>

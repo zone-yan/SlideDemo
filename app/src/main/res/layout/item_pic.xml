@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--注意此处尽量不要设置margin，因为自定义了recyclerView的LayoutManager，设置间距后如果布局较复杂的话会出现不可控的情况
+    间距尽量设置在子布局中-->
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:roundedCornerRadius="10dp"
+        app:roundingBorderColor="#000000"
+        app:roundingBorderWidth="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:actualImageScaleType="focusCrop"
+        app:backgroundImage="@drawable/pic_default_avatar"/>
+
+    <TextView
+        android:id="@+id/tv_position"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_gradient_bg"
+        app:layout_constraintLeft_toLeftOf="@id/sdv_pic"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/color_FFFFFF"
+        android:text="第几张"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
