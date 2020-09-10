@@ -80,28 +80,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PicViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PicViewHolder holder, final int position) {
         FrescoUtils.loadNetImage(holder.sdv_pic, mList.get(position));
-        holder.tv_position.setText("第 " + position + " 张");
-        holder.tv_position.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext,"position == " + position, Toast.LENGTH_SHORT).show();
-                Log.d("MyAdapter", " position== " + position);
-            }
-        });
+        updatePosition(holder.tv_position, position);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PicViewHolder holder, final int position, @NonNull List<Object> payloads) {
         if (payloads != null && payloads.size() > 0 && TextUtils.equals((String) (payloads.get(0)), "updatePosition")) {
             /**在此处重置位置position信息, 但不需要重新加载图片**/
-            holder.tv_position.setText("第 " + position + " 张");
-            holder.tv_position.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext,"position == " + position, Toast.LENGTH_SHORT).show();
-                    Log.d("MyAdapter", " position== " + position);
-                }
-            });
+            updatePosition(holder.tv_position, position);
+
         } else {
             super.onBindViewHolder(holder, position, payloads);
         }
@@ -111,6 +98,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PicViewHolder> {
     @Override
     public int getItemCount() {
         return mList == null ? 0 : mList.size();
+    }
+
+    private void updatePosition(TextView tv_position, final int position){
+        tv_position.setText("第 " + position + " 张");
+        tv_position.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"position == " + position, Toast.LENGTH_SHORT).show();
+                ArrayList<String> pics = new ArrayList<>();
+                pics.add(mList.get(position));
+                ShowBigImgActivity.start(mContext,pics,position);
+            }
+        });
     }
 
     public List<String> getData() {
